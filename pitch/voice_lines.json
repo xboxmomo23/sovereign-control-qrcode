@@ -1,36 +1,36 @@
 {
   "voice": "fr-FR-DeniseNeural",
-  "rate": "-14%",
+  "rate": "-18%",
   "lines": [
     {
       "id": "s1",
-      "say": "Sovereign Control aide une PME à lire les engagements de ses fournisseurs numériques.",
-      "caption": "Sovereign Control aide une PME\\Nà lire les engagements de ses fournisseurs."
+      "say": "Voici l'espace de TechIndustrie. Seuls ses outils cloud et IA y figurent.",
+      "caption": "Espace de TechIndustrie.\\NSeuls ses outils cloud et IA."
     },
     {
       "id": "s2",
-      "say": "Cinq fournisseurs fictifs sont suivis. Un seul contrat est détaillé : CloudNova AI.",
-      "caption": "Cinq fournisseurs fictifs.\\NUn seul contrat détaillé : CloudNova AI."
+      "say": "Trois sont déjà utilisés. NordStack est seulement envisagé.",
+      "caption": "Trois outils utilisés.\\NNordStack est seulement envisagé."
     },
     {
       "id": "s3",
-      "say": "Aucun document confidentiel n'est envoyé. La lecture reste dans le navigateur.",
-      "caption": "Aucun document confidentiel n'est envoyé.\\NLa lecture reste dans le navigateur."
+      "say": "Aucun fichier confidentiel n'est envoyé. C'est un choix de numérique responsable.",
+      "caption": "Aucun fichier confidentiel n'est envoyé.\\NUn choix de numérique responsable."
     },
     {
       "id": "s4",
-      "say": "On distingue les garanties, les points à clarifier, et les informations absentes.",
-      "caption": "Garanties, points à clarifier,\\Net informations absentes."
+      "say": "La lecture simulée sépare garantie, point à clarifier, et information absente.",
+      "caption": "Garantie, point à clarifier,\\net information absente."
     },
     {
       "id": "s5",
-      "say": "Chaque résultat renvoie à l'article exact du contrat fictif.",
-      "caption": "Chaque résultat renvoie\\Nà l'article exact du contrat fictif."
+      "say": "Chaque résultat cite l'article exact. Une validation humaine reste nécessaire.",
+      "caption": "Chaque résultat cite l'article exact.\\NUne validation humaine reste nécessaire."
     },
     {
       "id": "s6",
-      "say": "Le rapport se lit, puis s'imprime. Ce n'est pas une certification.",
-      "caption": "Le rapport se lit, puis s'imprime.\\NCe n'est pas une certification."
+      "say": "Le rapport se lit et s'imprime. Ce n'est pas une certification.",
+      "caption": "Le rapport se lit et s'imprime.\\NCe n'est pas une certification."
     }
   ]
 }

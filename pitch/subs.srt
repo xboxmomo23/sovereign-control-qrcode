@@ -1,29 +1,28 @@
 1
-00:00:01,339 --> 00:00:07,219
-Sovereign Control aide une PME
-à lire les engagements de ses fournisseurs.
+00:00:01,154 --> 00:00:08,234
+Espace de TechIndustrie.
+Seuls ses outils cloud et IA.
 
 2
-00:00:07,224 --> 00:00:15,096
-Cinq fournisseurs fictifs.
-Un seul contrat détaillé : CloudNova AI.
+00:00:08,247 --> 00:00:14,343
+Trois outils utilisés.
+NordStack est seulement envisagé.
 
 3
-00:00:16,136 --> 00:00:23,216
-Aucun document confidentiel n'est envoyé.
-La lecture reste dans le navigateur.
+00:00:14,359 --> 00:00:21,823
+Aucun fichier confidentiel n'est envoyé.
+Un choix de numérique responsable.
 
 4
-00:00:23,715 --> 00:00:29,931
-Garanties, points à clarifier,
-et informations absentes.
+00:00:22,357 --> 00:00:29,317
+Garantie, point à clarifier,\net information absente.
 
 5
-00:00:30,529 --> 00:00:35,593
-Chaque résultat renvoie
-à l'article exact du contrat fictif.
+00:00:29,754 --> 00:00:37,626
+Chaque résultat cite l'article exact.
+Une validation humaine reste nécessaire.
 
 6
-00:00:36,298 --> 00:00:42,610
-Le rapport se lit, puis s'imprime.
+00:00:37,649 --> 00:00:43,793
+Le rapport se lit et s'imprime.
 Ce n'est pas une certification.

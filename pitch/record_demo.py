@@ -32,6 +32,7 @@ CURSOR = """
     "top:88px"
   ].join(";");
   document.documentElement.appendChild(cursor);
+  localStorage.removeItem("sovereign-control-demo-v1");
   window.addEventListener("mousemove", (event) => {
     cursor.style.left = event.clientX + "px";
     cursor.style.top = event.clientY + "px";
@@ -68,8 +69,8 @@ async def main():
         await page.add_init_script(CURSOR)
         created = time.perf_counter()
         await page.goto(BASE, wait_until="networkidle")
-        await page.get_by_role("heading", name="Gardez le contrôle").wait_for()
-        await page.wait_for_timeout(350)
+        await page.get_by_role("heading", name="TechIndustrie", exact=True).wait_for()
+        await page.wait_for_timeout(250)
         origin = time.perf_counter()
         marks = []
 
@@ -85,57 +86,57 @@ async def main():
 
         started = mark("s1")
         await page.screenshot(path=str(FRAMES / "s1.png"))
-        await page.mouse.move(760, 210, steps=25)
+        await page.mouse.move(760, 180, steps=22)
         await hold(started, durations["s1"])
 
         started = mark("s2")
-        await page.mouse.move(430, 430, steps=28)
+        nordstack = page.get_by_role("row", name="NordStack")
+        await move_to(page, nordstack)
         await page.screenshot(path=str(FRAMES / "s2.png"))
-        await hold(started, durations["s2"])
-
-        button = page.get_by_role("button", name="Analyser un contrat")
+        await page.wait_for_timeout(int(max(0, durations["s2"] - 1.3) * 1000))
+        button = page.get_by_role("button", name="Lancer une analyse").first
         await move_to(page, button)
-        await page.wait_for_timeout(180)
         await button.click()
         await page.wait_for_url("**/nouvelle")
-        await page.get_by_text("Import réel disponible").wait_for()
-        launch = page.get_by_role("button", name="Lancer l")
-        await page.wait_for_timeout(200)
+        await hold(started, durations["s2"])
 
+        await page.get_by_text("n’est pas disponible").wait_for()
         started = mark("s3")
-        await page.screenshot(path=str(FRAMES / "s3.png"))
         import_zone = page.get_by_text("Importer un PDF")
         await move_to(page, import_zone)
+        await page.screenshot(path=str(FRAMES / "s3.png"))
         await hold(started, durations["s3"])
 
+        launch = page.get_by_role("button", name="Lancer l’analyse de démonstration")
         await move_to(page, launch)
         await page.wait_for_timeout(160)
         started = mark("s4")
         await launch.click()
         await page.wait_for_url("**/analyse")
         await page.get_by_role("heading", name="En bref").wait_for()
+        counts = page.get_by_text("Garanties identifiées").first
+        await counts.scroll_into_view_if_needed()
         await page.screenshot(path=str(FRAMES / "s4.png"))
         await hold(started, durations["s4"])
 
         clause = page.get_by_role("button", name="Accès hors Union")
         await move_to(page, clause)
-        await page.wait_for_timeout(160)
         await clause.click()
         await page.get_by_text("Article 6.4").first.wait_for()
         started = mark("s5")
         await page.screenshot(path=str(FRAMES / "s5.png"))
+        await page.wait_for_timeout(int(max(0, durations["s5"] - 2.0) * 1000))
+        report = page.get_by_role("link", name="Consulter le rapport").first
+        await move_to(page, report)
+        await report.click()
+        await page.wait_for_url("**/rapport/**")
         await hold(started, durations["s5"])
 
-        report = page.get_by_role("link", name="Voir le rapport")
-        await move_to(page, report)
-        await page.wait_for_timeout(160)
-        await report.click()
-        await page.wait_for_url("**/rapport")
         await page.get_by_role("heading", name="Synthèse exécutive").wait_for()
         started = mark("s6")
         await page.screenshot(path=str(FRAMES / "s6.png"))
         await hold(started, durations["s6"])
-        await page.wait_for_timeout(400)
+        await page.wait_for_timeout(300)
 
         lead = round(origin - created, 3)
         (ROOT / "marks.json").write_text(
