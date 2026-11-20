@@ -23,6 +23,10 @@ export function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
   const [menuPath, setMenuPath] = useState<string | null>(null);
   const open = menuPath === pathname;
+  if (pathname === "/demo-mobile" || pathname === "/devenir-pilote") {
+    return children;
+  }
+
   const title = pathname.startsWith("/rapport/")
     ? "Rapport"
     : (titles[pathname] ?? "Sovereign Control");
