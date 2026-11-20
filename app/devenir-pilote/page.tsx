@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
-import { PilotTallyEmbed } from "@/components/pilot-tally-embed";
-import { pilotLegal, resolveTallyEmbedUrl } from "@/lib/pilot-config";
+import { PilotRequestForm } from "@/components/pilot-request-form";
+import { pilotLegal } from "@/lib/pilot-config";
 
 export const metadata: Metadata = {
   title: "Programme pilote",
@@ -22,10 +22,6 @@ const benefits = [
 ];
 
 export default function DevenirPilotePage() {
-  const rawUrl = process.env.TALLY_FORM_URL;
-  const embedSrc = resolveTallyEmbedUrl(rawUrl);
-  const invalidUrl = Boolean(rawUrl?.trim()) && !embedSrc;
-
   return (
     <div className="min-h-dvh bg-[#FAF8F4] text-[#2E2E2E]">
       <div className="h-1 bg-[#A8B8A5]" aria-hidden="true" />
@@ -60,13 +56,13 @@ export default function DevenirPilotePage() {
 
         <section
           aria-labelledby="demande-titre"
-          className="rounded-2xl bg-white px-4 py-4 ring-1 ring-[#D8CBB8] sm:px-5"
+          className="relative rounded-2xl bg-white px-4 py-4 ring-1 ring-[#D8CBB8] sm:px-5"
         >
           <h2 id="demande-titre" className="text-lg leading-snug font-semibold tracking-tight">
             Demander une démonstration gratuite, sans engagement
           </h2>
           <div className="mt-3">
-            {embedSrc ? <PilotTallyEmbed src={embedSrc} /> : <FormConfigNotice invalid={invalidUrl} />}
+            <PilotRequestForm />
           </div>
         </section>
 
@@ -75,8 +71,8 @@ export default function DevenirPilotePage() {
             Confidentialité
           </h2>
           <p className="mt-1">
-            Les coordonnées transmises servent uniquement à répondre aux demandes liées au programme
-            pilote.
+            Les données transmises sont utilisées uniquement pour répondre aux demandes liées à
+            Sovereign Control.
           </p>
           <dl className="mt-3 space-y-1">
             <div>
@@ -115,42 +111,4 @@ function LegalValue({ value, emptyLabel }: { value: string; emptyLabel: string }
     );
   }
   return <span className="text-[#2E2E2E]">{trimmed}</span>;
-}
-
-function FormConfigNotice({ invalid }: { invalid: boolean }) {
-  const isDev = process.env.NODE_ENV === "development";
-
-  if (!isDev) {
-    return (
-      <p className="rounded-xl bg-[#FAF8F4] px-4 py-3 text-sm leading-6 text-[#2E2E2E] ring-1 ring-[#D8CBB8]">
-        Le formulaire n’est pas encore disponible. Aucune demande n’est enregistrée.
-      </p>
-    );
-  }
-
-  return (
-    <div className="rounded-xl bg-[#FAF8F4] px-4 py-3 text-sm leading-6 text-[#2E2E2E] ring-1 ring-[#D8CBB8]">
-      <p className="font-semibold">Configuration requise</p>
-      <p className="mt-1">
-        {invalid
-          ? "TALLY_FORM_URL ne contient pas un lien public Tally. Aucune demande n’est enregistrée."
-          : "TALLY_FORM_URL est absente. Aucune demande n’est enregistrée."}
-      </p>
-      <ol className="mt-2 list-decimal space-y-1 pl-5">
-        <li>
-          Créez un formulaire Tally gratuit : nom et prénom, nom de l’entreprise, adresse e-mail
-          professionnelle, type de demande (Démonstration, Participation aux tests, Recevoir des
-          informations).
-        </li>
-        <li>Copiez le lien public, de la forme https://tally.so/r/…</li>
-        <li>
-          À la racine du projet, dans <code className="text-[13px]">.env.local</code> :
-          <code className="mt-1 block overflow-x-auto rounded-lg bg-white px-2 py-1 text-[13px] ring-1 ring-[#D8CBB8]">
-            TALLY_FORM_URL=https://tally.so/r/votreIdentifiant
-          </code>
-        </li>
-        <li>Relancez le serveur de développement.</li>
-      </ol>
-    </div>
-  );
 }
